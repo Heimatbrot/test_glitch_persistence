@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lobby</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+    }
+    #account {
+      position: relative;
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #dropdown {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 10;
+    }
+    #account:hover #dropdown {
+      display: block;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="account">
+    <span id="username">Your Account</span> &#x25BC;
+    <div id="dropdown">
+      <a href="/logout">Logout</a><br/>
+      <form id="deleteForm" method="POST" action="/delete" onsubmit="return confirm('Are you sure you want to delete your account?');">
+        <button type="submit">Delete Account</button>
+      </form>
+    </div>
+  </div>
+
+  <h2>Other Registered Users:</h2>
+  <ul id="userList"></ul>
+
+  <script>
+    async function loadLobby() {
+      const res = await fetch('/api/users');
+      const data = await res.json();
+
+      document.getElementById('username').textContent = data.current.username;
+      const list = document.getElementById('userList');
+      list.innerHTML = '';
+      data.others.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = user.username;
+        list.appendChild(li);
+      });
+    }
+
+    loadLobby();
+  </script>
+</body>
+</html>
