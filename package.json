@@ -4,20 +4,20 @@
     "description": "Basic user authentication web app with SQLite for Glitch",
     "main": "server.js",
     "scripts": {
-      "start": "node server.js"
+        "start": "node server.js"
     },
     "dependencies": {
-      "bcrypt": "^5.1.0",
-      "connect-sqlite3": "^0.9.0",
-      "express": "^4.18.2",
-      "express-session": "^1.17.3",
-      "sqlite3": "^5.1.2"
+        "bcrypt": "^5.1.0",
+        "connect-sqlite3": "^0.9.0",
+        "dotenv": "^16.5.0",
+        "express": "^4.18.2",
+        "express-session": "^1.17.3",
+        "sqlite3": "^5.1.2"
     },
     "engines": {
-      "node": ">=16.0.0"
+        "node": ">=16.0.0"
     },
     "keywords": [],
     "author": "",
     "license": "MIT"
-  }
-  
+}
